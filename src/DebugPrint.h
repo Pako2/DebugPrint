@@ -1,6 +1,6 @@
 /*
   ESP8266 Debug Print library
-  Version 1.0
+  Version 1.1
   Copyright (C) 2019 Lubos Ruckl
 
   This is free and unencumbered software released into the public domain.
@@ -32,7 +32,7 @@
   Example sketch:
 // ***********************************************************************************
 // Used NTPclient library: https://github.com/arduino-libraries/NTPClient
-// ----------------------------------------------------------------------
+//-----------------------------------------------------------------------
 
 //#define SOFT_DEBUG   //When we want to use SoftwareSerial instead of HardwareSerial
 #define SW_GPIO_TX 12
@@ -51,8 +51,8 @@ unsigned long baud     = 115200;  // If we set baud = 0, it will disable Serial 
 uint16_t port          = 23;      // If we set port = 0, it will disable telnet server
 bool insertTimestamp   = true;    // We can enable/disable time stamping
 int16_t tzcorr         = 0;       // Number of seconds to correct the timestamp.
-                                  // This can be equal to tzoffset when now() returns UTC time,
-                                  // 0 when now() returns local time
+// This can be equal to tzoffset when now() returns UTC time,
+// 0 when now() returns local time
 
 WiFiUDP ntpUDP;
 NTPClient timeClient(ntpUDP, serverPool, tzoffset);
@@ -69,27 +69,28 @@ void setup() {
   my_debug.begin(baud, port, insertTimestamp, tzcorr);
   //my_debug.begin(115200);  // We can easily switch to regular Serial !
   my_debug.println();
+  my_debug.println(F("\r\nWaiting for WiFi ..."));
 
   WiFi.begin(ssid, password);
 
-  while ( WiFi.status() != WL_CONNECTED ) {
-    delay ( 500 );
-    my_debug.print ( "." );
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    my_debug.print(F("."));
   }
-  my_debug.println("\r\nWifi connected !");
-  my_debug.print("IP address: ");
+  my_debug.println(F("\r\nWiFi connected !"));
+  my_debug.print(F("IP address: "));
   my_debug.println(WiFi.localIP());
-
+  my_debug.println(F("Waiting for NTP time ..."));
   timeClient.begin();
   timeClient.update();
   time_t _now = now();
   while (year(_now) == 1970) {
     _now = timeClient.getEpochTime();
-    delay ( 500 );
-    my_debug.print ( "." );
+    delay(500);
+    my_debug.print(F("."));
   }
   setTime(timeClient.getEpochTime());
-  my_debug.println("\r\nGot NTP time !");
+  my_debug.println(F("\r\nGot NTP time !"));
 }
 
 void loop() {
@@ -104,6 +105,8 @@ void loop() {
 #ifndef DebugPrint_h
 #define DebugPrint_h
 
+#define TELNET_BUFF 4096
+#define WARNING "\r\n\r\n**************************\r\n* Warning !!!            *\r\n* Telnet buffer was full *\r\n* Possible data loss     *\r\n**************************\r\n\r\n"
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <TimeLib.h>
@@ -119,6 +122,8 @@ class DebugPrint : public Stream
     int16_t _tzcorr = 0;
     static const uint8_t tssize = 22;
     static const uint8_t buffsize = 200 + tssize;
+    void *telbuff;
+    uint16_t telcnt = 0;
     char buff[buffsize + 3];
     uint8_t count = tssize;
     bool cl = false;
