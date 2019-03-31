@@ -42,8 +42,8 @@ DebugPrint my_debug(&Serial, false);
 
 ## "Begin" options
 To make the prints work, you need to use the "begin" command:
-`my_debug.begin(baud, port, insertTimestamp, tzcorr);`
-**baud**            = serial port speed. Max. SoftwareSerial's speed is 115200. If you select 0, no output will go to the serial port.
-**port**            = port used for telnet (usually 23). If you select 0, the telnet server will not be used.
-**insertTimestamp** = true or false. Use this argument to enable or disable the timestamp insertion option.
+`my_debug.begin(baud, port, insertTimestamp, tzcorr);`  
+**baud**            = serial port speed. Max. SoftwareSerial's speed is 115200. If you select 0, no output will go to the serial port.  
+**port**            = port used for telnet (usually 23). If you select 0, the telnet server will not be used.  
+**insertTimestamp** = true or false. Use this argument to enable or disable the timestamp insertion option.  
 **tzcorr**          = number of seconds to correct time (according to time zone). If the **now()** command returns the correct local time, tzcorr will be 0. Otherwise, it will usually be a time zone offset.
