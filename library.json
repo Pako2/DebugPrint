@@ -21,5 +21,9 @@
     ],
     "license": "The Unlicense",
     "frameworks": "Arduino",
-    "platforms": ["espressif8266"]
+    "platforms": ["espressif8266"],
+    "dependencies": [
+        "Time",
+        "EspSoftwareSerial"
+    ]
   }
