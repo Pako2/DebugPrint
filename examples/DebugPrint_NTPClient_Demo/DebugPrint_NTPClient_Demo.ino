@@ -10,8 +10,8 @@
 #include <SoftwareSerial.h>
 #include "DebugPrint.h"
 
-const char *ssid       = "Abura";
-const char *password   = "520516520516";
+const char *ssid       = "YOUR_SSID";
+const char *password   = "YOUR_PASSWORD";
 const char *serverPool = "pool.ntp.org";
 int16_t tzoffset       = 3600;
 unsigned long baud     = 115200;  // If we set baud = 0, it will disable Serial output
