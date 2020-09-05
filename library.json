@@ -24,6 +24,7 @@
     "platforms": ["espressif8266"],
     "dependencies": [
         "Time",
-        "EspSoftwareSerial"
+        "EspSoftwareSerial",
+	"NTPClient"
     ]
   }
