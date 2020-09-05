@@ -14,12 +14,12 @@
     },
     "examples": [
         {
-            "name": "DebugPrint NTPClient Demo",
+            "name": "DebugPrint_NTPClient_Demo",
             "base": "examples/DebugPrint_NTPClient_Demo",
             "files": ["DebugPrint_NTPClient_Demo.ino"]
         }
     ],
-    "license": "The Unlicense",
+    "license": "Unlicense",
     "frameworks": "Arduino",
     "platforms": ["espressif8266"],
     "dependencies": [
