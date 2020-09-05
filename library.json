@@ -19,6 +19,18 @@
             "files": ["DebugPrint_NTPClient_Demo.ino"]
         }
     ],
+    "authors":
+    [
+        {
+            "name": "Pako2",
+            "url": "https://github.com/Pako2"
+        },
+        {
+            "name": "Duckle29",
+            "url": "https://github.com/Duckle29",
+            "maintainer": true
+        }
+    ],
     "license": "Unlicense",
     "frameworks": "Arduino",
     "platforms": ["espressif8266"],
