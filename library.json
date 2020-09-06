@@ -1,6 +1,6 @@
 {
     "name": "DebugPrint",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Library for ESP8266 debug printings",
     "keywords": [
         "telnet", 
@@ -14,12 +14,24 @@
     },
     "examples": [
         {
-            "name": "DebugPrint NTPClient Demo",
+            "name": "DebugPrint_NTPClient_Demo",
             "base": "examples/DebugPrint_NTPClient_Demo",
             "files": ["DebugPrint_NTPClient_Demo.ino"]
         }
     ],
-    "license": "The Unlicense",
+    "authors":
+    [
+        {
+            "name": "Pako2",
+            "url": "https://github.com/Pako2"
+        },
+        {
+            "name": "Duckle29",
+            "url": "https://github.com/Duckle29",
+            "maintainer": true
+        }
+    ],
+    "license": "Unlicense",
     "frameworks": "Arduino",
     "platforms": ["espressif8266"],
     "dependencies": [
